@@ -1,6 +1,34 @@
+# Claude-Specific Usage Notes
+
+## 🚨 CRITICAL: Preventing Broken Links
+
+**EVERY TIME you create or import files, you MUST:**
+
+1. **Use lowercase-kebab-case for ALL files**: `user-profile.tsx` NOT `UserProfile.tsx`
+2. **Include extensions in ALL imports**: `import { Button } from './button.tsx'` NOT `from './button'`
+3. **Use path aliases for deep imports**: `import { useAuth } from '@/hooks/use-auth'` NOT `'../../../hooks/useAuth'`
+4. **Verify imports before committing**: Check that every import path actually exists
+5. **Update ALL imports when renaming**: Use Find & Replace across entire project
+
+**Common Mistakes That Break Everything:**
+- ❌ `import { Dashboard } from './Dashboard'` (missing .tsx, wrong case)
+- ❌ `import { userService } from '../services/UserService'` (wrong case)
+- ❌ Creating `UserProfile.tsx` then importing `'./user-profile'`
+- ✅ `import { Dashboard } from './dashboard.tsx'` (correct!)
+
+**Before EVERY commit, run this mental checklist:**
+- Are all my files lowercase-kebab-case?
+- Do all my imports have extensions?
+- Did I update imports after moving/renaming?
+- Do all import paths actually exist?
+
+---
+
+## Original Python Project Guidelines
+
 ### 🔄 Project Awareness & Context
 - **Always read `PLANNING.md`** at the start of a new conversation to understand the project's architecture, goals, style, and constraints.
-- **Check `TASK.md`** before starting a new task. If the task isn’t listed, add it with a brief description and today's date.
+- **Check `TASK.md`** before starting a new task. If the task isn't listed, add it with a brief description and today's date.
 - **Use consistent naming conventions, file structure, and architecture patterns** as described in `PLANNING.md`.
 - **Use venv_linux** (the virtual environment) whenever executing Python commands, including for unit tests.
 
@@ -26,7 +54,7 @@
 
 ### ✅ Task Completion
 - **Mark completed tasks in `TASK.md`** immediately after finishing them.
-- Add new sub-tasks or TODOs discovered during development to `TASK.md` under a “Discovered During Work” section.
+- Add new sub-tasks or TODOs discovered during development to `TASK.md` under a "Discovered During Work" section.
 
 ### 📎 Style & Conventions
 - **Use Python** as the primary language.
